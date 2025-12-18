@@ -89,61 +89,7 @@ img.loaded {
   animation: firefly-float 15s ease-in-out infinite, firefly-glow 3s ease-in-out infinite;
 }
 
-.firefly:nth-child(1) {
-  left: 10%;
-  top: 20%;
-  animation-delay: 0s, 0s;
-  animation-duration: 18s, 2.5s;
-}
 
-.firefly:nth-child(2) {
-  left: 25%;
-  top: 60%;
-  animation-delay: -3s, -1s;
-  animation-duration: 14s, 3.5s;
-}
-
-.firefly:nth-child(3) {
-  left: 50%;
-  top: 35%;
-  animation-delay: -7s, -0.5s;
-  animation-duration: 20s, 2.8s;
-}
-
-.firefly:nth-child(4) {
-  left: 70%;
-  top: 70%;
-  animation-delay: -5s, -2s;
-  animation-duration: 16s, 3.2s;
-}
-
-.firefly:nth-child(5) {
-  left: 85%;
-  top: 25%;
-  animation-delay: -10s, -1.5s;
-  animation-duration: 22s, 2.6s;
-}
-
-.firefly:nth-child(6) {
-  left: 40%;
-  top: 80%;
-  animation-delay: -2s, -0.8s;
-  animation-duration: 17s, 3s;
-}
-
-.firefly:nth-child(7) {
-  left: 60%;
-  top: 15%;
-  animation-delay: -8s, -2.2s;
-  animation-duration: 19s, 3.3s;
-}
-
-.firefly:nth-child(8) {
-  left: 15%;
-  top: 45%;
-  animation-delay: -12s, -0.3s;
-  animation-duration: 21s, 2.7s;
-}
 
 @keyframes firefly-float {
   0%, 100% {

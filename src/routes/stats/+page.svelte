@@ -1,49 +1,70 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
     
+    interface HistoryEntry {
+        count: number;
+        timestamp: number;
+    }
+    
     let { data } = $props();
-    let history = $state([]);
+    let currentCount = $state(data.currentCount);
+    let history: HistoryEntry[] = $state([]);
     let milestones = [200, 250, 300, 400, 500, 750, 1000];
     
+    async function fetchCount() {
+        try {
+            const res = await fetch('https://api.rooted.hackclub.com/count');
+            if (res.ok) {
+                const json = await res.json();
+                currentCount = json.count;
+                addToHistory(json.count, Date.now());
+            }
+        } catch (e) {
+            console.log('Could not fetch count:', e);
+        }
+    }
+    
+    function addToHistory(count: number, timestamp: number) {
+        const lastEntry = history[history.length - 1];
+        if (!lastEntry || lastEntry.count !== count) {
+            history = [...history, { count, timestamp }];
+            localStorage.setItem('rsvp-history', JSON.stringify(history));
+        }
+    }
+    
     onMount(() => {
-        // Load history from localStorage
         const stored = localStorage.getItem('rsvp-history');
         if (stored) {
             history = JSON.parse(stored);
         }
         
-        // Add current data point if we have a count
         if (data.currentCount !== null) {
-            const lastEntry = history[history.length - 1];
-            // Only add if it's been at least 1 hour since last entry or count changed
-            if (!lastEntry || 
-                data.timestamp - lastEntry.timestamp > 3600000 || 
-                lastEntry.count !== data.currentCount) {
-                history = [...history, { count: data.currentCount, timestamp: data.timestamp }];
-                localStorage.setItem('rsvp-history', JSON.stringify(history));
-            }
+            addToHistory(data.currentCount, data.timestamp);
         }
+        
+        const interval = setInterval(fetchCount, 5 * 60 * 1000);
+        return () => clearInterval(interval);
     });
     
-    function calculateGrowthRate() {
+    function calculateGrowthRate(): number | null {
         if (history.length < 2) return null;
         const recent = history.slice(-10);
         if (recent.length < 2) return null;
         
         const first = recent[0];
         const last = recent[recent.length - 1];
-        const timeDiff = (last.timestamp - first.timestamp) / (1000 * 60 * 60 * 24); // days
+        const timeDiff = (last.timestamp - first.timestamp) / (1000 * 60 * 60 * 24);
         const countDiff = last.count - first.count;
         
         if (timeDiff === 0) return null;
-        return countDiff / timeDiff; // RSVPs per day
+        return countDiff / timeDiff;
     }
     
-    function predictMilestone(target) {
+    function predictMilestone(target: number): string | null {
         const rate = calculateGrowthRate();
-        if (!rate || rate <= 0 || !data.currentCount) return null;
+        if (!rate || rate <= 0 || !currentCount) return null;
         
-        const remaining = target - data.currentCount;
+        const remaining = target - currentCount;
         if (remaining <= 0) return 'Reached!';
         
         const daysNeeded = remaining / rate;
@@ -51,21 +72,21 @@
         return targetDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
     
-    function formatDate(timestamp) {
+    function formatDate(timestamp: number): string {
         return new Date(timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
     
-    function getMaxCount() {
-        if (history.length === 0) return data.currentCount || 100;
-        return Math.max(...history.map(h => h.count), data.currentCount || 0);
+    function getMaxCount(): number {
+        if (history.length === 0) return currentCount || 100;
+        return Math.max(...history.map(h => h.count), currentCount || 0);
     }
     
-    function getMinCount() {
+    function getMinCount(): number {
         if (history.length === 0) return 0;
         return Math.min(...history.map(h => h.count));
     }
     
-    function generateLinePath(points, width, height) {
+    function generateLinePath(points: HistoryEntry[], width: number, height: number): string {
         if (points.length < 2) return '';
         const max = getMaxCount();
         const min = getMinCount();
@@ -79,7 +100,7 @@
         }).join(' ');
     }
     
-    function generateAreaPath(points, width, height) {
+    function generateAreaPath(points: HistoryEntry[], width: number, height: number): string {
         if (points.length < 2) return '';
         const linePath = generateLinePath(points, width, height);
         const padding = 20;
@@ -355,7 +376,7 @@
         </div>
         
         <div class="current-count">
-            <div class="count-number">{data.currentCount ?? '—'}</div>
+            <div class="count-number">{currentCount ?? '—'}</div>
             <div class="count-label">Hackers Rooted</div>
         </div>
         
@@ -363,7 +384,7 @@
             <p class="share-label">Spread the word</p>
             <div class="share-buttons">
                 <a 
-                    href="https://twitter.com/intent/tweet?text={encodeURIComponent(`${data.currentCount} hackers already signed up for Rooted! Join us: `)}&url={encodeURIComponent('https://rooted.hackclub.com')}" 
+                    href="https://twitter.com/intent/tweet?text={encodeURIComponent(`${currentCount} hackers already signed up for Rooted! Join us: `)}&url={encodeURIComponent('https://rooted.hackclub.com')}" 
                     target="_blank" 
                     rel="noopener"
                     class="share-btn"
@@ -376,9 +397,10 @@
             </div>
         </div>
         
-        {#if calculateGrowthRate()}
+        {#if calculateGrowthRate() !== null}
+            {@const rate = calculateGrowthRate()}
             <p class="growth-rate">
-                Growing at ~{calculateGrowthRate().toFixed(1)} RSVPs/day
+                Growing at ~{rate?.toFixed(1)} RSVPs/day
             </p>
         {/if}
         
@@ -432,10 +454,10 @@
             <h2 class="section-title">Milestone Predictions</h2>
             <div class="milestones">
                 {#each milestones as target}
-                    <div class="milestone" class:reached={data.currentCount >= target}>
+                    <div class="milestone" class:reached={currentCount !== null && currentCount >= target}>
                         <div class="milestone-target">{target}</div>
                         <div class="milestone-date">
-                            {#if data.currentCount >= target}
+                            {#if currentCount !== null && currentCount >= target}
                                 ✓ Reached!
                             {:else if predictMilestone(target)}
                                 Est. {predictMilestone(target)}

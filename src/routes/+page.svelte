@@ -4,6 +4,20 @@
     let { data } = $props();
     let pageLoaded = $state(false);
 
+    // Number of fireflies = RSVP count (with a reasonable max for performance)
+    const fireflyCount = Math.min(data.rsvpCount ?? 0, 100);
+    
+    // Generate random positions and animation timings for each firefly
+    const fireflies = Array.from({ length: fireflyCount }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        floatDuration: 14 + Math.random() * 10,
+        glowDuration: 2.5 + Math.random() * 1.5,
+        floatDelay: -Math.random() * 15,
+        glowDelay: -Math.random() * 3
+    }));
+
     onMount(() => {
         const img = new Image();
         
@@ -40,15 +54,13 @@
     <div class="bg-container">
         <div class="bg-overlay"></div>
         
-        <!-- Fireflies -->
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
+        <!-- Fireflies based on RSVP count -->
+        {#each fireflies as fly (fly.id)}
+            <div
+                class="firefly"
+                style="left: {fly.left}%; top: {fly.top}%; animation-duration: {fly.floatDuration}s, {fly.glowDuration}s; animation-delay: {fly.floatDelay}s, {fly.glowDelay}s;"
+            ></div>
+        {/each}
         
         <div class="bg-content">
             <h2>Rooted</h2>
