@@ -37,12 +37,12 @@
 
                     <div class="photo-gallery">
                         <div class="gallery-grid">
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/logotent_pink_people.jpg" alt="BornHack tent with people" loading="lazy" />
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/participant_tent_laptop.jpg" alt="Participant coding in tent" loading="lazy" />
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/night_stars_lights.jpg" alt="Night sky with lights" loading="lazy" />
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/dome_lights.jpg" alt="Dome with colorful lights" loading="lazy" />
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/ellen_tesla_coil.jpg" alt="Tesla coil demonstration" loading="lazy" />
-                            <img src="https://bornhack.dk/static/img/bornhack-2020/bar_people.jpg" alt="People at the bar" loading="lazy" />
+                            <img src="/bornhack/logotent_pink_people.jpg" alt="BornHack tent with people" loading="lazy" decoding="async" width="300" height="200" />
+                            <img src="/bornhack/participant_tent_laptop.jpg" alt="Participant coding in tent" loading="lazy" decoding="async" width="300" height="200" />
+                            <img src="/bornhack/night_stars_lights.jpg" alt="Night sky with lights" loading="lazy" decoding="async" width="300" height="200" />
+                            <img src="/bornhack/dome_lights.jpg" alt="Dome with colorful lights" loading="lazy" decoding="async" width="300" height="200" />
+                            <img src="/bornhack/ellen_tesla_coil.jpg" alt="Tesla coil demonstration" loading="lazy" decoding="async" width="300" height="200" />
+                            <img src="/bornhack/bar_people.jpg" alt="People at the bar" loading="lazy" decoding="async" width="300" height="200" />
                         </div>
                         <p class="gallery-credit">Photos from <a href="https://bornhack.dk" target="_blank" rel="noopener">bornhack.dk</a></p>
                     </div>
