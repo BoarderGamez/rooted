@@ -62,9 +62,9 @@
         {/each}
         
         <div class="bg-content">
-            <h2>Rooted - 404 Not Found</h2>
-                <img class="error" src="/confused_dino-removebg.png" alt="404 image" />
-            <p class="stats-link">Looks like you got a bit lost, the page you are looking for does not exist.</p>
+            <h2>Oops! Something went wrong</h2>
+                <img class="error" src="/confused_dino-removebg.png" alt="Confused dinosaur illustration" />
+            <p style="color: gray;">Looks like you got a bit lost. Let's get you back on track.</p>
             <br>
             <a href="/" class="rsvp-btn">Head back home!</a>
 

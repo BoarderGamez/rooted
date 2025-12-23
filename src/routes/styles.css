@@ -633,11 +633,14 @@ img.loaded {
   display: block;
   font-family: 'Phantom Sans', sans-serif;
   font-size: 14px;
-  color: #6a9a6a;
+  color: gray;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
+.footer p {
+  margin: 4px 0;
+}
 .footer a:hover {
   color: #a8d4a8;
 }

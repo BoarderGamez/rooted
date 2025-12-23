@@ -55,7 +55,7 @@
 
         <div class="collapsible-section">
             <button class="collapsible-header" onclick={() => orgOpen = !orgOpen}>
-                <span class="collapsible-title">Rooted Organisers</span>
+                <span class="collapsible-title">🌳 Rooted Organizers</span>
                 <span class="collapsible-arrow" class:open={orgOpen}>▶</span>
             </button>
             
@@ -71,7 +71,7 @@
                     <div class="org-content">
                         <img src="/profilepic/christian.png" alt="Christian's Profile Picture" class="org-pic">
                         <p class="faq-answer">
-                            Christian is the Lead Organiser for Rooted. He has worked on lots of YSWS's before and is excited to bring Rooted to life.
+                            Christian is the Lead Organizer for Rooted. He has worked on many YSWS events before and is excited to bring Rooted to life.
                         </p>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="org-content">
                         <img src="/profilepic/mahad.png" alt="Mahad's Profile Picture" class="org-pic">
                     <p class="faq-answer">
-                        Mahad is one of the Co-Organiser for Rooted. He is an amazing developer and also works for Hack Club.
+                        Mahad is one of the Co-Organizers for Rooted. He is an amazing developer and also works for Hack Club.
                     </p>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="org-content">
                         <img src="/profilepic/freddie.jpeg" alt="Freddie's Profile Picture" class="org-pic">
                     <p class="faq-answer">
-                        Freddie is one of the Co-Organiser for Rooted. He loves coding and is excited to help out with Rooted.
+                        Freddie is one of the Co-Organizers for Rooted. He loves coding and is excited to help out with Rooted.
                     </p>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     <div class="org-content">
                         <img src="/profilepic/frog.png" alt="Frog's Profile Picture" class="org-pic">
                     <p class="faq-answer">
-                        Frog is one of the Co-Organiser for Rooted. He is a great member of the team and is always ready to help.
+                        Frog is one of the Co-Organizers for Rooted. He is a great member of the team and is always ready to help.
                     </p>
                     </div>
                 </div>
@@ -119,13 +119,24 @@
                 We run clubs, events, and projects around the world to help teens learn, create, and connect.
             </p>
         </div>
-
         <div class="faq-item">
-            <h2 class="faq-question">My parents are nervous about me attending. How can I reassure them?</h2>
+            <h2 class="faq-question">What is Rooted?</h2>
             <p class="faq-answer">
-                That's totally understandable! BornHack is a safe environment, which has been run many times. 
+                Rooted is a work-in-progress YSWS (You Ship, We Ship) event sponsored by Hack Club, taking place at BornHack 2026.
+                If teens ship hours of code, Hack Club will fund their ticket to BornHack.
+                It's designed to bring together teenage hackers for a week of camping, coding, and community building.
+                Attendees will have the opportunity to work on projects, attend workshops, and connect with other hackers in a supportive environment.
+            </p>
+        </div>
+        <div class="faq-item">
+            <h2 class="faq-question">What if my parents are nervous about me attending?</h2>
+            <p class="faq-answer">
+                That's totally understandable!
+                Hack Club has a guide for adults about its operations <a href="https://docs.google.com/document/d/1W-ZW8D3sWTsTg82JRT52n5upHew5XkAOmHRk4GPWibU/edit?usp=sharing">here</a>, more resources specifically for Rooted will come out in future!
+                <br>
+                BornHack is a safe environment, which has been run many times. 
                 See more information about their <a href="https://bornhack.dk" target="_blank" rel="noopener">previous events</a>! 
-                We'll also provide parents with full transparency about accommodations and travel.
+                We'll also provide parents with full transparency about accommodations and travel. We will have trained adult STAFF present at all times during the event.
             </p>
         </div>
 
@@ -147,7 +158,14 @@
             <a href="https://hackclub.enterprise.slack.com/archives/C09LYU1S23Y" class="rsvp-btn" target="_blank" rel="noopener">#Rooted Slack Channel</a>
             <br>
             <br>
-            If you are already on slack hit the button to join!
+            If you're already on Slack, hit the button to join!
+            </p>
+        </div>
+        <div class="faq-item">
+            <h2 class="faq-question">Get in touch!</h2>
+            <p class="faq-answer">
+                If you have any more questions, feel free to reach out to us at <a href="mailto:rooted@hackclub.com">rooted@hackclub.com</a>.
+                If you are a member of Hack Club Slack, you can also DM Christian, Mahad, Freddie, or Frog directly OR use the #rooted-help channel!
             </p>
         </div>
     </div>
