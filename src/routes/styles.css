@@ -442,7 +442,7 @@ img.loaded {
 }
 
 .map-iframe {
-  padding: 10px;
+  padding-top: 10px;
   border-radius: 8px;
 }
 
