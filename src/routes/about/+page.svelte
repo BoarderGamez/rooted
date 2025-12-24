@@ -27,7 +27,7 @@
                 continue;
             }
             try {
-                const res = await fetch(`http://localhost:5000/api/slack/user/${member.id}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/slack/user/${member.id}`);
                 if (res.ok) {
                     const data = await res.json();
                     members.push({
